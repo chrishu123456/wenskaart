@@ -6,7 +6,28 @@
         xmlns:local="clr-namespace:WensKaart"
         mc:Ignorable="d"
         Title="Wenskaarten" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+
+    <DockPanel>
+        <Menu Height="24" Name="MenuBalk" DockPanel.Dock="Top" VerticalAlignment="Top">
+            <MenuItem Header="Bestand">
+                <MenuItem Name="New" Header="Nieuw"></MenuItem>
+                <MenuItem Name="Open" Header="Openen"></MenuItem>
+                <MenuItem Name="Save" Header="Opslaan"></MenuItem>
+                <MenuItem Name="PrintPreview" Header="Afdrukvoorbeeld"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Name="Close" Header="Afsluiten"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Kaarten">
+                <MenuItem Name="ChristmasCard" Header="KerstKaart"></MenuItem>
+                <MenuItem Name="BirthDayCard" Header="GeboorteKaart"></MenuItem>
+            </MenuItem>
+            <StatusBar DockPanel.Dock="Bottom" Height="24">
+                <StatusBarItem Name="StatusItem" Content="Nieuw"></StatusBarItem>
+            </StatusBar>
+            <Canvas Margin="20" Height="100" Width="200">
+                
+            </Canvas>
+            
+        </Menu>
+    </DockPanel>
 </Window>
