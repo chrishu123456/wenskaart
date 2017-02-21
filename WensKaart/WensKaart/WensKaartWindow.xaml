@@ -5,38 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WensKaart"
         mc:Ignorable="d"
-        Title="Wenskaarten" Height="550" Width="750">
+        Title="Wenskaarten" Height="550" Width="750" Loaded="Window_Loaded">
 
+    <Window.CommandBindings>
+        <CommandBinding Command="New" Executed="NewExecuted"></CommandBinding>
+        <CommandBinding Command="Open" Executed="OpenExecuted"></CommandBinding>
+        <CommandBinding Command="Save" Executed="SaveExecuted"></CommandBinding>
+        <CommandBinding Command="PrintPreview" Executed="PrintPreviewExecuted"></CommandBinding>
+        <CommandBinding Command="Close" Executed="CloseExecuted"></CommandBinding>
+    </Window.CommandBindings>
     <DockPanel>
         <Menu Name="MenuBalk" DockPanel.Dock="Top" VerticalAlignment="Top">
             <MenuItem Header="Bestand">
-                <MenuItem Name="New" Header="Nieuw"></MenuItem>
-                <MenuItem Name="Open" Header="Openen"></MenuItem>
-                <MenuItem Name="Save" Header="Opslaan"></MenuItem>
-                <MenuItem Name="PrintPreview" Header="Afdrukvoorbeeld"></MenuItem>
+                <MenuItem Name="New" Header="Nieuw" Command="New"></MenuItem>
+                <MenuItem Name="Open" Header="Openen" Command="Open"></MenuItem>
+                <MenuItem Name="Save" Header="Opslaan" Command="Save" IsEnabled="False"></MenuItem>
+                <MenuItem Name="PrintPreview" Header="Afdrukvoorbeeld" Command="PrintPreview" IsEnabled="False"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Name="Close" Header="Afsluiten"></MenuItem>
+                <MenuItem Name="Close" Header="Afsluiten" Command="Close"></MenuItem>
             </MenuItem>
             <MenuItem Header="Kaarten">
                 <MenuItem Name="ChristmasCard" Header="KerstKaart"></MenuItem>
                 <MenuItem Name="BirthDayCard" Header="GeboorteKaart"></MenuItem>
             </MenuItem>
-            <StatusBar DockPanel.Dock="Bottom" >
-                <StatusBarItem Name="StatusItem" Content="Nieuw"></StatusBarItem>
-            </StatusBar>
+
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <Canvas Height="400" Width="500" Margin="10"></Canvas>
-                    <TextBox Name="Wens" Height="40"></TextBox>
+                    <Canvas Height="400" Width="500" Margin="10">
+                        <StackPanel>
+                            <StackPanel.Background>
+                                <ImageBrush ImageSource="Images\geboortekaart.jpg" ></ImageBrush>
+                            </StackPanel.Background>
+                        </StackPanel>
+                
+                    </Canvas>
+                    <TextBox Name="Wens" Height="50" FontFamily="{Binding ElementName=lettertypesCombobox, Path=SelectedValue}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="150">
                     <TextBlock Name="balkleur" Text="Kleur van de bal" TextAlignment="Center"></TextBlock>
                     <ComboBox Name="balKleuren" Width="150" DisplayMemberPath="Naam" SelectedValuePath="Naam"></ComboBox>
                     <Ellipse Margin="20,20"></Ellipse>
-                    <Image Source="Images/vuilnisbak.png" Margin="20,50"></Image>
-                    <TextBlock Name="lettertype" Text="Lettertype" Margin="20,10"></TextBlock>
-                    <ComboBox Name="lettertypesTekst" Width="150" DisplayMemberPath="Naam" SelectedValuePath="Naam"></ComboBox>
+                    <Image Source="Images/vuilnisbak.png" Margin="20,70"></Image>
+                    <TextBlock Name="lettertype" Text="Lettertype" Margin="20,10" TextAlignment="Center"></TextBlock>
+                    <ComboBox Name="lettertypesCombobox" Width="150" ItemsSource="{Binding Source={x:Static Member=Fonts.SystemFontFamilies}}"></ComboBox>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Grootte" VerticalAlignment="Center"></TextBlock>
                         <Label Name="grootteText" VerticalAlignment="Center" Content="10"></Label>
@@ -51,5 +63,8 @@
 
             </StackPanel>
         </Menu>
+        <StatusBar DockPanel.Dock="Bottom" >
+            <StatusBarItem Name="StatusItem"></StatusBarItem>
+        </StatusBar>
     </DockPanel>
 </Window>
