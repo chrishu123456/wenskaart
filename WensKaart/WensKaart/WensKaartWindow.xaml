@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WensKaart"
         mc:Ignorable="d"
-        Title="Wenskaarten" Height="350" Width="525">
+        Title="Wenskaarten" Height="520" Width="700">
 
     <DockPanel>
-        <Menu Height="24" Name="MenuBalk" DockPanel.Dock="Top" VerticalAlignment="Top">
+        <Menu Name="MenuBalk" DockPanel.Dock="Top" VerticalAlignment="Top">
             <MenuItem Header="Bestand">
                 <MenuItem Name="New" Header="Nieuw"></MenuItem>
                 <MenuItem Name="Open" Header="Openen"></MenuItem>
@@ -21,12 +21,33 @@
                 <MenuItem Name="ChristmasCard" Header="KerstKaart"></MenuItem>
                 <MenuItem Name="BirthDayCard" Header="GeboorteKaart"></MenuItem>
             </MenuItem>
-            <StatusBar DockPanel.Dock="Bottom" Height="24">
+            <StatusBar DockPanel.Dock="Bottom" >
                 <StatusBarItem Name="StatusItem" Content="Nieuw"></StatusBarItem>
             </StatusBar>
-            <Canvas Margin="20" Height="100" Width="200">
-                
-            </Canvas>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130"></RowDefinition>
+                    <RowDefinition Height="130"></RowDefinition>
+                    <RowDefinition Height="130"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Canvas Grid.RowSpan="3" Grid.Row="0" Grid.Column="0"></Canvas>
+                <TextBox Name="Wens" Grid.Row="4" Grid.Column="0"></TextBox>
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                    <TextBlock TextAlignment="Center" Text="Kleur van de bal"></TextBlock>
+                    <ComboBox Name="comboBoxKleuren">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=Naam}" Foreground="Black"></Label>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
             
         </Menu>
     </DockPanel>
