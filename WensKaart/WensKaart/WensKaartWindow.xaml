@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WensKaart"
         mc:Ignorable="d"
-        Title="Wenskaarten" Height="520" Width="700">
+        Title="Wenskaarten" Height="550" Width="750">
 
     <DockPanel>
         <Menu Name="MenuBalk" DockPanel.Dock="Top" VerticalAlignment="Top">
@@ -24,31 +24,32 @@
             <StatusBar DockPanel.Dock="Bottom" >
                 <StatusBarItem Name="StatusItem" Content="Nieuw"></StatusBarItem>
             </StatusBar>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="130"></RowDefinition>
-                    <RowDefinition Height="130"></RowDefinition>
-                    <RowDefinition Height="130"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
-                    <ColumnDefinition Width="150"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Canvas Grid.RowSpan="3" Grid.Row="0" Grid.Column="0"></Canvas>
-                <TextBox Name="Wens" Grid.Row="4" Grid.Column="0"></TextBox>
-                <StackPanel Grid.Row="0" Grid.Column="1">
-                    <TextBlock TextAlignment="Center" Text="Kleur van de bal"></TextBlock>
-                    <ComboBox Name="comboBoxKleuren">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding Path=Naam}" Foreground="Black"></Label>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <Canvas Height="400" Width="500" Margin="10"></Canvas>
+                    <TextBox Name="Wens" Height="40"></TextBox>
                 </StackPanel>
-            </Grid>
-            
+                <StackPanel Orientation="Vertical" Width="150">
+                    <TextBlock Name="balkleur" Text="Kleur van de bal" TextAlignment="Center"></TextBlock>
+                    <ComboBox Name="balKleuren" Width="150" DisplayMemberPath="Naam" SelectedValuePath="Naam"></ComboBox>
+                    <Ellipse Margin="20,20"></Ellipse>
+                    <Image Source="Images/vuilnisbak.png" Margin="20,50"></Image>
+                    <TextBlock Name="lettertype" Text="Lettertype" Margin="20,10"></TextBlock>
+                    <ComboBox Name="lettertypesTekst" Width="150" DisplayMemberPath="Naam" SelectedValuePath="Naam"></ComboBox>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Grootte" VerticalAlignment="Center"></TextBlock>
+                        <Label Name="grootteText" VerticalAlignment="Center" Content="10"></Label>
+                        <StackPanel Orientation="Vertical">
+                            <RepeatButton Name="meer" Content="+" Click="meer_Click"></RepeatButton>
+                            <RepeatButton Name="minder" Content="-" Click="minder_Click"></RepeatButton>
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+
+
+            </StackPanel>
         </Menu>
     </DockPanel>
 </Window>
