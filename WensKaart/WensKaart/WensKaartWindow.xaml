@@ -25,18 +25,18 @@
                 <MenuItem Name="Close" Header="Afsluiten" Command="Close"></MenuItem>
             </MenuItem>
             <MenuItem Header="Kaarten">
-                <MenuItem Name="ChristmasCard" Header="KerstKaart"></MenuItem>
-                <MenuItem Name="BirthDayCard" Header="GeboorteKaart"></MenuItem>
+                <MenuItem Name="ChristmasCard" Header="KerstKaart" Click="ChristmasCard_Click"></MenuItem>
+                <MenuItem Name="BirthDayCard" Header="GeboorteKaart" Click="BirthDayCard_Click"></MenuItem>
             </MenuItem>
 
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <Canvas Height="400" Width="500" Margin="10">
+                    <Canvas Name="wk" Height="400" Width="500" Margin="10" >
                         <StackPanel>
-                            <StackPanel.Background>
-                                <ImageBrush ImageSource="Images\geboortekaart.jpg" ></ImageBrush>
-                            </StackPanel.Background>
+                             <StackPanel.Background>
+                                <ImageBrush ImageSource="Images/geboortekaart.jpg" ></ImageBrush>
+                            </StackPanel.Background> 
                         </StackPanel>
                 
                     </Canvas>
@@ -64,7 +64,7 @@
             </StackPanel>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom" >
-            <StatusBarItem Name="StatusItem"></StatusBarItem>
+            <StatusBarItem Name="StatusItem" Content="Nieuw"></StatusBarItem>
         </StatusBar>
     </DockPanel>
 </Window>

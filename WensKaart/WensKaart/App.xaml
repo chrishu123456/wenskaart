@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:WensKaart"
              StartupUri="WensKaartWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary Source="Resources\Stijlen.xaml"></ResourceDictionary>
+         <ResourceDictionary Source="Resources\Stijlen.xaml"></ResourceDictionary> 
     </Application.Resources>
 </Application>

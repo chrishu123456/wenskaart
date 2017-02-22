@@ -78,7 +78,7 @@ namespace WensKaart
         {
             try
             {
-                OpenFileDialog dlg = new OpenFileDialog();
+                SaveFileDialog dlg = new SaveFileDialog();
                 dlg.Filter = "Wenskaarten | *.wens";
                 dlg.FileName = "Wenskaart";
                 dlg.DefaultExt = ".wens";
@@ -87,9 +87,8 @@ namespace WensKaart
                 {
                     using (StreamWriter bestand = new StreamWriter(dlg.FileName))
                     {
-                        MessageBox.Show(Wens.Text.ToString());
                         bestand.WriteLine(Wens.Text.ToString());
-                        bestand.WriteLine(Wens.SelectedValue.ToString());
+                        bestand.WriteLine(Wens.FontFamily.ToString());
                         bestand.WriteLine(Wens.FontSize.ToString());
                     }
                 }
@@ -120,13 +119,15 @@ namespace WensKaart
                     {
                         Wens.Text = bestand.ReadLine();
                         Wens.FontFamily = new FontFamily(bestand.ReadLine());
-                     //   Wens.FontSize = (FontSize)ConvertFromString(bestand.ReadLine());
+                        Wens.FontSize = Convert.ToDouble(bestand.ReadLine());
                     }
+                    StatusItem.Content = dlg.FileName;
+                    SaveEnAfdruk(true);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show("Er ging iets fout bij het Openen" + ex.Message, "Foutmelding", MessageBoxButton.OK);
             }
             
         }
@@ -137,12 +138,32 @@ namespace WensKaart
 
         private void CloseExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-
+            if (MessageBox.Show("Wilt u het programma sluiten ?","Afsluiten",MessageBoxButton.YesNo,MessageBoxImage.Question,MessageBoxResult.No) == MessageBoxResult.Yes)
+            { this.Close(); }
         }
 
         private void Nieuw()
         {
             StatusItem.Content = "Nieuw";
+            SaveEnAfdruk(false);
+            Wens.Text = string.Empty;
+            Wens.FontSize = 10;
+        }
+
+        private void SaveEnAfdruk(Boolean actief)
+        {
+            Save.IsEnabled = actief;
+            PrintPreview.IsEnabled = actief;
+        }
+
+        private void ChristmasCard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BirthDayCard_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
