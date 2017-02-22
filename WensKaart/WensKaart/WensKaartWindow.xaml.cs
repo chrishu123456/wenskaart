@@ -215,7 +215,7 @@ namespace WensKaart
         {
             if (e.Data.GetDataPresent("sleepbal"))
             {
-                if (sender is Ellipse)
+                if (sender is Canvas)
                 {
                     Ellipse gesleeptebal = (Ellipse)e.Data.GetData("sleepbal");
                     Ellipse dropbal = (Ellipse)sender;
