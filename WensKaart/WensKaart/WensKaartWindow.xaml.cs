@@ -55,6 +55,7 @@ namespace WensKaart
                 Wens.FontSize++;
             }
             grootteText.Content = aantal.ToString();
+            SaveEnAfdruk(true);
         }
 
         private void minder_Click(object sender, RoutedEventArgs e)
@@ -66,6 +67,7 @@ namespace WensKaart
                 Wens.FontSize--;
             }
             grootteText.Content = aantal.ToString();
+            SaveEnAfdruk(true);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -87,6 +89,9 @@ namespace WensKaart
                 {
                     using (StreamWriter bestand = new StreamWriter(dlg.FileName))
                     {
+                        
+                        string canvasbackground = @"H:\wenskaart\WensKaart\WensKaart\Images\geboortekaart.jpg";
+                        bestand.WriteLine(canvasbackground);
                         bestand.WriteLine(Wens.Text.ToString());
                         bestand.WriteLine(Wens.FontFamily.ToString());
                         bestand.WriteLine(Wens.FontSize.ToString());
@@ -117,6 +122,8 @@ namespace WensKaart
                 {
                     using (StreamReader bestand = new StreamReader(dlg.FileName))
                     {
+                        string canvasbackground;
+                        canvasbackground = bestand.ReadLine();
                         Wens.Text = bestand.ReadLine();
                         Wens.FontFamily = new FontFamily(bestand.ReadLine());
                         Wens.FontSize = Convert.ToDouble(bestand.ReadLine());
@@ -158,7 +165,7 @@ namespace WensKaart
 
         private void ChristmasCard_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void BirthDayCard_Click(object sender, RoutedEventArgs e)
