@@ -33,7 +33,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
-                    <Canvas Name="wk" Height="400" Width="500" Margin="10" >
+                    <Canvas Height="400" Width="500" Margin="10" >
                         <Canvas.Background>
 
                                     <ImageBrush ImageSource="Images/geboortekaart.jpg"  ></ImageBrush>

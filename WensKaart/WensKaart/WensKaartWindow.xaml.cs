@@ -165,19 +165,11 @@ namespace WensKaart
 
         private void ChristmasCard_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void BirthDayCard_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            ImageBrush canvasachtergrond = new ImageBrush();
-            BitmapImage birthday = new BitmapImage();
-            birthday.UriSource = new Uri(@"Images/geboortekaart.jpg", UriKind.Relative);
-            canvasachtergrond.ImageSource = birthday;
-            canvasachtergrond.ImageSource;
-            */
-
+            
         }
     }
 }
