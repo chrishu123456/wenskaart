@@ -24,6 +24,8 @@ namespace WensKaart
     /// </summary>
     public partial class WensKaartWindow : Window
     {
+        private string canvasbackground=string.Empty;
+
         public WensKaartWindow()
         {
             InitializeComponent();
@@ -89,8 +91,7 @@ namespace WensKaart
                 {
                     using (StreamWriter bestand = new StreamWriter(dlg.FileName))
                     {
-                        
-                        string canvasbackground = @"H:\wenskaart\WensKaart\WensKaart\Images\geboortekaart.jpg";
+                    //    string canvasbackground = @"H:\wenskaart\WensKaart\WensKaart\Images\geboortekaart.jpg";
                         bestand.WriteLine(canvasbackground);
                         bestand.WriteLine(Wens.Text.ToString());
                         bestand.WriteLine(Wens.FontFamily.ToString());
@@ -122,11 +123,17 @@ namespace WensKaart
                 {
                     using (StreamReader bestand = new StreamReader(dlg.FileName))
                     {
-                        string canvasbackground;
-                        canvasbackground = bestand.ReadLine();
+                        // string canvasbackground;
+                        // canvasbackground = bestand.ReadLine();
+                        ImageBrush t = new ImageBrush(); 
+                        Uri bron = new Uri(bestand.ReadLine());
+                        t.ImageSource = new BitmapImage(bron);
+                        wk.Background = t;
                         Wens.Text = bestand.ReadLine();
                         Wens.FontFamily = new FontFamily(bestand.ReadLine());
                         Wens.FontSize = Convert.ToDouble(bestand.ReadLine());
+                        lettertypesCombobox.SelectedItem = new FontFamily(Wens.FontFamily.ToString());
+                        grootteText.Content = Wens.FontSize.ToString();
                     }
                     StatusItem.Content = dlg.FileName;
                     SaveEnAfdruk(true);
@@ -155,6 +162,14 @@ namespace WensKaart
             SaveEnAfdruk(false);
             Wens.Text = string.Empty;
             Wens.FontSize = 10;
+            canvasbackground = "pack://application:,,,/Images/geboortekaart.jpg";
+            ImageBrush t = new ImageBrush();
+            Uri bron = new Uri(canvasbackground, UriKind.Absolute);
+            t.ImageSource = new BitmapImage(bron);
+            wk.Background = t;
+            lettertypesCombobox.SelectedItem = new FontFamily("Segoe UI");
+            grootteText.Content = Wens.FontSize.ToString();
+            balKleuren.SelectedItem = null;
         }
 
         private void SaveEnAfdruk(Boolean actief)
@@ -165,11 +180,21 @@ namespace WensKaart
 
         private void ChristmasCard_Click(object sender, RoutedEventArgs e)
         {
+            ImageBrush t = new ImageBrush();
+            canvasbackground = "pack://application:,,,/Images/kerstkaart.jpg";
+            Uri bron = new Uri(canvasbackground, UriKind.Absolute);
+            t.ImageSource = new BitmapImage(bron);
+            wk.Background = t;
+
         }
 
         private void BirthDayCard_Click(object sender, RoutedEventArgs e)
         {
-            
+            ImageBrush t = new ImageBrush();
+            canvasbackground = "pack://application:,,,/Images/geboortekaart.jpg";
+            Uri bron = new Uri(canvasbackground, UriKind.Absolute);
+            t.ImageSource = new BitmapImage(bron);
+            wk.Background = t;
         }
 
         private void Ellipse_MouseMove(object sender, MouseEventArgs e)
@@ -195,6 +220,10 @@ namespace WensKaart
             }
         }
 
-
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (MessageBox.Show("Wilt u het programma sluiten ?", "Afsluiten", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No)
+            { e.Cancel = true; }
+        }
     }
 }
