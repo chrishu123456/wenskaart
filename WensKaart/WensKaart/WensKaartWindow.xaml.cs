@@ -171,5 +171,31 @@ namespace WensKaart
         {
             
         }
+
+        private void Ellipse_MouseMove(object sender, MouseEventArgs e)
+        {
+            Ellipse bal = (Ellipse)sender;
+            DataObject sleepbal = new DataObject("sleepbal", bal);
+            DragDrop.DoDragDrop(bal, sleepbal, DragDropEffects.Move);
+        }
+
+        private void wk_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("sleepbal"))
+            {
+                if (sender is Ellipse)
+                {
+                    Ellipse gesleeptebal = (Ellipse)e.Data.GetData("sleepbal");
+                    Ellipse dropbal = (Ellipse)sender;
+                    wk.Children.Add(dropbal);
+                  //  wk.Drop = dropbal;
+
+                }
+
+
+            }
+        }
+
+
     }
 }
