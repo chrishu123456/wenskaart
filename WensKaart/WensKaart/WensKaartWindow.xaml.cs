@@ -179,6 +179,7 @@ namespace WensKaart
             DragDrop.DoDragDrop(bal, sleepbal, DragDropEffects.Move);
         }
 
+
         private void wk_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent("sleepbal"))
@@ -188,8 +189,6 @@ namespace WensKaart
                     Ellipse gesleeptebal = (Ellipse)e.Data.GetData("sleepbal");
                     Ellipse dropbal = (Ellipse)sender;
                     wk.Children.Add(dropbal);
-                  //  wk.Drop = dropbal;
-
                 }
 
 
