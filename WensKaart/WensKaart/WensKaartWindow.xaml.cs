@@ -26,7 +26,6 @@ namespace WensKaart
     {
         private string canvasbackground=string.Empty;
 
-        private Ellipse nieuweBal = new Ellipse();
 
         public WensKaartWindow()
         {
@@ -201,12 +200,12 @@ namespace WensKaart
 
         private void Ellipse_MouseMove(object sender, MouseEventArgs e)
         {
-            Ellipse nieuwebal = (Ellipse)sender;
+            Ellipse bal = (Ellipse)sender;
 
-            if ((e.LeftButton == MouseButtonState.Pressed) && (nieuwebal.Fill != null))
+            if ((e.LeftButton == MouseButtonState.Pressed) && (bal.Fill != null))
             {
-                DataObject sleepbal = new DataObject("sleepbal", nieuwebal);
-                DragDrop.DoDragDrop(nieuwebal, sleepbal, DragDropEffects.Move);
+                DataObject sleepbal = new DataObject("sleepbal", bal);
+                DragDrop.DoDragDrop(bal, sleepbal, DragDropEffects.Move);
             }
          
         }
