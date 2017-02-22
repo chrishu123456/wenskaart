@@ -14,6 +14,7 @@
         <CommandBinding Command="PrintPreview" Executed="PrintPreviewExecuted"></CommandBinding>
         <CommandBinding Command="Close" Executed="CloseExecuted"></CommandBinding>
     </Window.CommandBindings>
+
     <DockPanel>
         <Menu Name="MenuBalk" DockPanel.Dock="Top" VerticalAlignment="Top">
             <MenuItem Header="Bestand">
@@ -33,13 +34,14 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <Canvas Name="wk" Height="400" Width="500" Margin="10" >
-                        <StackPanel>
-                             <StackPanel.Background>
-                                <ImageBrush ImageSource="Images/geboortekaart.jpg" ></ImageBrush>
-                            </StackPanel.Background> 
-                        </StackPanel>
-                
+                        <Canvas.Background>
+
+                                    <ImageBrush ImageSource="Images/geboortekaart.jpg" ></ImageBrush>
+
+                        </Canvas.Background>
+                        
                     </Canvas>
+
                     <TextBox Name="Wens" Height="50" FontFamily="{Binding ElementName=lettertypesCombobox, Path=SelectedValue}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="150">
